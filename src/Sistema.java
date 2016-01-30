@@ -9,6 +9,7 @@ import controller.ControllerPrincipal;
 
 /**
  * classe Sistema - essa é a classe que executa tudo, por aqui começa o sistema
+ * Projeto Motos - Sistema de uma loja de motos simpres
  * @author dener
  */
 public class Sistema
