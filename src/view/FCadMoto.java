@@ -45,8 +45,6 @@ public class FCadMoto extends javax.swing.JDialog
         btGravar = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,10 +67,6 @@ public class FCadMoto extends javax.swing.JDialog
         btLimpar.setText("Limpar");
 
         btCancelar.setText("Cancelar");
-
-        jLabel7.setText("jLabel7");
-
-        jLabel8.setText("jLabel8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,13 +92,10 @@ public class FCadMoto extends javax.swing.JDialog
                         .addComponent(edCodigo, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(cbMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btGravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btGravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -140,12 +131,8 @@ public class FCadMoto extends javax.swing.JDialog
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(btCancelar)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,7 +155,5 @@ public class FCadMoto extends javax.swing.JDialog
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
