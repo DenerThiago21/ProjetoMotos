@@ -130,6 +130,16 @@ public class ControllerCliente
                 }
             }
         });
+        //inicializa o botão excluir do formulário FPesqCli
+        fPesqCli.btExcluir.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                excluir();
+            }
+        });
     }
            
     /**
@@ -242,6 +252,30 @@ public class ControllerCliente
             JOptionPane.showMessageDialog(null, "Selecione um cliente");
         }
         
+    }
+    
+    /**
+     * método excluir - método para exdcluir um cliente
+     */
+    private void excluir()
+    {
+        //variável posição recebe o valor recorente a linha da tabela
+        int posicao = fPesqCli.tbCliente.getSelectedRow();
+        if(posicao >= 0)
+        {
+            clienteAtual = modelCliente.getCliente(posicao);
+            if(daoCliente.excluir(clienteAtual))
+            {
+                JOptionPane.showMessageDialog(null, "cliente removido com sucesso");
+                modelCliente.removeCliente(posicao);
+            } else
+            {
+                JOptionPane.showMessageDialog(null, "Erro ao remover o cliente");
+            } 
+        } else
+        {
+            JOptionPane.showMessageDialog(null, "Selecione um cliente para excluir");
+        }
     }
     
     /**

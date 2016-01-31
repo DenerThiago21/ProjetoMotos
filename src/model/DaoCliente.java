@@ -79,13 +79,35 @@ public class DaoCliente
                     "where idcliente = "+cliente.getIdCliente();
            
             comando = ConexaoPostgree.getConexaoPostgree().prepareStatement(sql);
-            System.out.println(sql);
+            //System.out.println(sql);
             //executa o comando
             return(comando.executeUpdate() > 0);
         } catch (SQLException e)
         {
             return false;
         }finally
+        {
+            ConexaoPostgree.fecharConnection();
+        }
+    }
+    
+    public boolean excluir(Cliente cliente)
+    {
+        //preopara a query
+        PreparedStatement comando = null;
+        try
+        {
+            //cria a String com a query
+            String sql = "delete from tbcliente where idcliente = ?"; 
+            //executa o comando com pássando a String por parametro
+            comando = ConexaoPostgree.getConexaoPostgree().prepareStatement(sql);
+            comando.setInt(1, cliente.getIdCliente());
+            System.out.println(sql);
+            return (comando.executeUpdate() > 0);
+        } catch (SQLException e)
+        {
+            return false;  
+        } finally
         {
             ConexaoPostgree.fecharConnection();
         }
