@@ -1,1 +1,1 @@
-# ProjetoMotos
+ProjetoMotos - Um projetinho particular para treinar durante as férias de 2015/2016 ... consistem em um sistema em java com acesso a banco de dados postgres ... CRUD de motos e clientes e Venda de motos ... proterior a isso pretendesse acressentar um ou mais relatórios ... afim de aprender a gerar relatórios em pdf.
