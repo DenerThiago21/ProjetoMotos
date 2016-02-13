@@ -7,6 +7,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import model.DaoMoto;
+import model.Moto;
 import view.FCadMoto;
 import view.FPesqMoto;
 
@@ -20,6 +23,10 @@ public class ControllerMoto
     private FCadMoto fCadMoto;
     //cria fPesqMoto
     private FPesqMoto fPesqMoto;
+    //cria daoMoto
+    private DaoMoto daoMoto;
+    //cria moto atual
+    private Moto motoAtual;
     
     /**
      * Construtor
@@ -30,6 +37,10 @@ public class ControllerMoto
         fCadMoto = new FCadMoto(null, true);
         //instancia fPesqMoto
         fPesqMoto = new FPesqMoto(null, true);
+        //instance daoMoto
+        daoMoto = new DaoMoto();
+        //inicialize motoAtual
+        motoAtual = null;
         //chama função inicializarComponentes
         inicializarComponentes();
     }
@@ -57,6 +68,16 @@ public class ControllerMoto
             public void actionPerformed(ActionEvent e)
             {
                 cancelar();
+            }
+        });
+        //inicialização do botão gravar - chama o méto gravar
+        fCadMoto.btGravar.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                gravar();
             }
         });
     }
@@ -100,4 +121,42 @@ public class ControllerMoto
         fCadMoto.setVisible(false);
     }
     
+    /**
+     * mthod gravar - método que contém a gravação e edição de uma moto
+     */
+    private void gravar()
+    {
+        //pega a Sting contida num indice do combobox
+        String marca = String.valueOf(fCadMoto.cbMarca.getSelectedItem());
+        // converte o ano pego na tela em inteiro
+        int ano = Integer.parseInt(fCadMoto.edAno.getText());
+        // converte as cilindradas pegas da tela em inteiro
+        int cilindradas = Integer.parseInt(fCadMoto.edCilindradas.getText());
+        // pega o proço da tela e converte em double
+        double preco = Double.parseDouble(fCadMoto.edPreco.getText());
+        
+        // aqui fica a lógica para inserir uma moto no banco de dados
+        // casp moto atual é nulo .. então é instanciado uma moto com os valores obtidos da tela
+        // é inserido no banco através do DAO
+        if(motoAtual == null)
+        {
+            //utiliza-se o zero no id pois estou utilizando uma sequence para
+            //gerar os códigos automaticamente.
+            Moto m = new Moto(0,
+                            marca,
+                            fCadMoto.edModelo.getText(),
+                            ano,
+                            cilindradas,
+                            preco);
+            
+            if(daoMoto.inserir(m))
+            {
+                JOptionPane.showMessageDialog(fPesqMoto, "Moto inserida com sucesso...");
+                limpar();
+            }else
+            {
+                JOptionPane.showMessageDialog(fPesqMoto, "Erro ao inserir uma moto...");
+            }
+        }
+    }
 }
