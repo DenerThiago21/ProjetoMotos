@@ -100,7 +100,7 @@ public class ModelCliente extends AbstractTableModel
         {
             case 0:
             {
-                return "id Cliente";
+                return "Cód.";
             }
             case 1:
             {

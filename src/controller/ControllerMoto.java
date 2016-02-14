@@ -7,11 +7,14 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.DaoMoto;
 import model.Moto;
 import view.FCadMoto;
 import view.FPesqMoto;
+import view.ModelMoto;
 
 /**
  * classe3 ControllerMoto o "meio de campo" entre view e model 
@@ -27,6 +30,8 @@ public class ControllerMoto
     private DaoMoto daoMoto;
     //cria moto atual
     private Moto motoAtual;
+    // cria modelMoto para Trabalhar com o table
+    private ModelMoto modelMoto;
     
     /**
      * Construtor
@@ -41,6 +46,8 @@ public class ControllerMoto
         daoMoto = new DaoMoto();
         //inicialize motoAtual
         motoAtual = null;
+        // instancia o modelMoto
+        modelMoto = new ModelMoto();
         //chama função inicializarComponentes
         inicializarComponentes();
     }
@@ -50,6 +57,10 @@ public class ControllerMoto
      */
     private void inicializarComponentes()
     {
+        // setando o table mode do Formulario FPesqMoto
+        fPesqMoto.tbMoto.setModel(modelMoto);
+        
+        //INICIALIZAÇÃO DOS BOTÕES DO FORMULÁRIO FCadMoto
         //incicializando o botão limpar - chama o método limpar
         fCadMoto.btLimpar.addActionListener(new ActionListener()
         {
@@ -80,6 +91,38 @@ public class ControllerMoto
                 gravar();
             }
         });
+        
+        //INICIALIZAÇÃO DOS BOTÕES DO FROMULÁRIO FPesMoto
+        //inicializa o botão Voltar
+        fPesqMoto.btVoltar.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                cancelar();
+            }
+        });
+        //inicialização do botão Editar
+        fPesqMoto.btEditar.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                editarMoto();
+            }
+        });
+        //inicialização do botão Excluir
+        fPesqMoto.btExcluir.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                excluir();
+            }
+        });
     }
     
     /**
@@ -96,6 +139,7 @@ public class ControllerMoto
      */
     public void PesqMoto()
     {
+        carregarMotoModel();
         //torna o form de pesquisa de moto visível
         fPesqMoto.setVisible(true);
     }
@@ -119,6 +163,7 @@ public class ControllerMoto
     private void cancelar()
     {
         fCadMoto.setVisible(false);
+        fPesqMoto.setVisible(false);
     }
     
     /**
@@ -158,5 +203,100 @@ public class ControllerMoto
                 JOptionPane.showMessageDialog(fPesqMoto, "Erro ao inserir uma moto...");
             }
         }
+        // Aquie é feita a lógica para atualizar um cliente
+        // caso a condição aterior "if (motoAtual == null){ ...}", não for satisfeita 
+        // é atualizado no banco de dados através do DAO
+        else
+        {
+            Moto m = new Moto(Integer.parseInt(fCadMoto.edCodigo.getText()),
+                            marca,
+                            fCadMoto.edModelo.getText(),
+                            ano,
+                            cilindradas,
+                            preco);
+            
+            if(daoMoto.atualzar(m))
+            {
+                JOptionPane.showMessageDialog(fPesqMoto, "Moto Editada com sucesso...");
+                fCadMoto.setVisible(false);
+            }else
+            {
+                JOptionPane.showMessageDialog(fPesqMoto, "Erro ao Editar Moto...");
+            }
+        }
+    }
+    
+    /**
+     * implementação do método editarMoto
+     */
+    private void editarMoto()
+    {
+        int posicao = fPesqMoto.tbMoto.getSelectedRow();
+        //pega a Sting contida num indice do combobox
+        String marca = String.valueOf(fCadMoto.cbMarca.getSelectedItem());
+        if(posicao >= 0)
+        {
+            motoAtual = modelMoto.getMoto(posicao);
+            fCadMoto.edCodigo.setText(Integer.toString(motoAtual.getIdMoto()));
+            fCadMoto.cbMarca.setSelectedItem(marca);
+            fCadMoto.cbMarca.setSelectedItem(motoAtual.getMarca());
+            fCadMoto.edModelo.setText(motoAtual.getModelo());
+            fCadMoto.edAno.setText(Integer.toString(motoAtual.getAno()));
+            fCadMoto.edCilindradas.setText(Integer.toString(motoAtual.getCilindradas()));
+            fCadMoto.edPreco.setText(Double.toString(motoAtual.getPreco()));
+            fCadMoto.edCodigo.setEditable(false);
+            fCadMoto.btLimpar.setEnabled(false);
+            fCadMoto.setVisible(true);
+            carregarMotoModel();
+        }else
+        {
+            JOptionPane.showMessageDialog(fPesqMoto, "Escolha uma moto...");
+        }
+    }
+    
+    /**
+     * implementação do método excluir
+     */
+    private void excluir()
+    {
+        //variável posição revcebe a linha correspondentae na tabela
+        int posicao = fPesqMoto.tbMoto.getSelectedRow();
+        if(posicao >= 0)
+        {
+            motoAtual = modelMoto.getMoto(posicao);
+            if(daoMoto.excluir(motoAtual))
+            {
+                JOptionPane.showMessageDialog(null, "Moto removida com Sucesso...");
+                modelMoto.removeMoto(posicao);
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Erro ao Remover Moto...");
+            }
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "Selecione uma moto para excluir...");
+        }
+    }
+    
+    /**
+     * implementação do método carregarMotoModel que carrega todas as motos em um array
+     */
+    private void carregarMotoModel()
+    {
+        modelMoto.limpar();
+        ArrayList<Moto> listaMoto = daoMoto.listar();
+        for(Moto m : listaMoto)
+        {
+            modelMoto.addMoto(m);
+        }
+    }
+    
+    /**
+     * implementação da função cadastroMoto
+     */
+    public void cadastroMoto()
+    {
+        limpar();
+        fCadMoto.setVisible(true);
     }
 }

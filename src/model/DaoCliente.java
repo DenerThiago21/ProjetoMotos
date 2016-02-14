@@ -91,6 +91,12 @@ public class DaoCliente
         }
     }
     
+    
+    /**
+     * implementação do método excluir que utilizará uma query para excluir determinado registro do banco de dados
+     * @param cliente
+     * @return  
+     */
     public boolean excluir(Cliente cliente)
     {
         //preopara a query

@@ -60,6 +60,8 @@ public class FCadMoto extends javax.swing.JDialog
 
         jLabel6.setText("Ano");
 
+        edCodigo.setEditable(false);
+
         cbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aprilia", "Benelli", "BMW", "Buell", "Ducatti", "Harley-Davidson", "Honda", "Kasinski", "KTM", "Kawasaki", "MvAgusta", "Susuki", "Triumph", "Yamaha", " " }));
 
         btGravar.setText("Gravar");
