@@ -140,6 +140,16 @@ public class ControllerCliente
                 excluir();
             }
         });
+        //inicializa o botão novo do formulario FPesqCliente
+        fPesqCli.btNovo.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {                
+                novoCliente();
+            }
+        });
     }
            
     /**
@@ -194,6 +204,7 @@ public class ControllerCliente
             {
                 JOptionPane.showMessageDialog(fCadCli, "Cliente inserido com Sucesso ...");
                 limpar();
+                fCadCli.setVisible(false);
             }
             else
             {
@@ -310,5 +321,15 @@ public class ControllerCliente
         carregarClienteModel();
         //torna o form de pesquisa de vliente visível
         fPesqCli.setVisible(true);
+    }
+    
+    /**
+     * método novoCliente caso não exista cliente cadastrado na lista clica no botão 
+     * novo e abre o formulario de cadastro de cliente
+     */
+    public void novoCliente()
+    {
+        fCadCli.setVisible(true);
+        carregarClienteModel();
     }
 }

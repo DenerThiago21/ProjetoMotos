@@ -34,6 +34,8 @@
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btNovo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btEditar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btExcluir" min="-2" max="-2" attributes="0"/>
@@ -57,6 +59,7 @@
                   <Component id="btExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btNovo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -120,6 +123,14 @@
     <Component class="javax.swing.JButton" name="btVoltar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Voltar"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btNovo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

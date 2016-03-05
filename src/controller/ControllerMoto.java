@@ -123,6 +123,16 @@ public class ControllerMoto
                 excluir();
             }
         });
+        //inicialização do botão novo no formulário fpesqmoto
+        fPesqMoto.btNovo.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                novaMoto();
+            }
+        });
     }
     
     /**
@@ -198,6 +208,7 @@ public class ControllerMoto
             {
                 JOptionPane.showMessageDialog(fPesqMoto, "Moto inserida com sucesso...");
                 limpar();
+                fCadMoto.setVisible(false);
             }else
             {
                 JOptionPane.showMessageDialog(fPesqMoto, "Erro ao inserir uma moto...");
@@ -298,5 +309,14 @@ public class ControllerMoto
     {
         limpar();
         fCadMoto.setVisible(true);
+    }
+    
+    /**
+     * método nova mmoto para cadastro de uma nova moto caso a mesma não se encontre na lista
+     */
+    public void novaMoto()
+    {
+        fCadMoto.setVisible(true);
+        carregarMotoModel();
     }
 }

@@ -36,6 +36,7 @@ public class FPesqMoto extends javax.swing.JDialog
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +71,8 @@ public class FPesqMoto extends javax.swing.JDialog
 
         btVoltar.setText("Voltar");
 
+        btNovo.setText("Novo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,6 +87,8 @@ public class FPesqMoto extends javax.swing.JDialog
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btNovo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btExcluir)
@@ -102,7 +107,8 @@ public class FPesqMoto extends javax.swing.JDialog
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir)
                     .addComponent(btEditar)
-                    .addComponent(btVoltar))
+                    .addComponent(btVoltar)
+                    .addComponent(btNovo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -118,6 +124,7 @@ public class FPesqMoto extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btEditar;
     public javax.swing.JButton btExcluir;
+    public javax.swing.JButton btNovo;
     public javax.swing.JButton btVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

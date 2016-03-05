@@ -33,7 +33,7 @@ public class DaoMoto
             PreparedStatement comando = null;
             //cria a query e passa os valores
             comando = ConexaoPostgree.getConexaoPostgree().prepareStatement("insert into tbmoto(idmoto, marca, modelo, ano, "
-                    + "cilidradas, preco) values (nextval('tbmoto_seq'),?,?,?,?,?)");
+                    + "cilindradas, preco) values (nextval('tbmoto_seq'),?,?,?,?,?)");
             comando.setString(1, moto.getMarca());
             comando.setString(2, moto.getModelo());
             comando.setInt(3, moto.getAno());
